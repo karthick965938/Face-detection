@@ -1,0 +1,17 @@
+import cv2
+
+# Load the cascade
+#https://github.com/karthick965938/Face-detection/haarcascades/haarcascade_frontalface_default.xml
+face_cascade = cv2.CascadeClassifier('haarcascades/haarcascade_frontalface_default.xml')
+# Read the input image
+img = cv2.imread('Mark-Zuckerberg.jpg')
+# Convert into grayscale
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+# Detect faces
+faces = face_cascade.detectMultiScale(gray)
+# Draw rectangle around the faces
+for (x, y, w, h) in faces:
+    cv2.rectangle(img, (x, y), (x+w, y+h), (0, 0, 255), 2)
+# Display the output
+cv2.imshow('img', img)
+cv2.waitKey()
